@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Platform, Pressable, StyleSheet, Text, View} from 'react-native';
 
 export const CounterScreen = () => {
   const [count, setCount] = useState(0);
@@ -13,7 +13,9 @@ export const CounterScreen = () => {
           styles.button,
           pressed && styles.buttonPressed
         ]}>
-        <Text style={{color: 'white'}}>Incrementar</Text>
+        <Text style={{
+          color: Platform.OS === 'android' ? 'white' : '#4746AB'
+          }}>Incrementar</Text>
       </Pressable>
     </View>
   );
@@ -31,11 +33,11 @@ const styles = StyleSheet.create({
     fontWeight: '300',
   },
   button: {
-    backgroundColor: '#5856D6',
+    backgroundColor: Platform.OS === 'android' ? '#5856D6': 'white',
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 10,
   },buttonPressed: {
-    backgroundColor: '#4746AB',
+    backgroundColor: Platform.OS === 'android' ? '#4746AB' : 'white',
   }
 });
